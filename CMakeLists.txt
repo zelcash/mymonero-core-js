@@ -66,7 +66,7 @@ set(
     ${MONERO_SRC}/cryptonote_basic/cryptonote_format_utils.cpp
     ${MONERO_SRC}/crypto/crypto.cpp
     ${MONERO_SRC}/crypto/hash.c
-    ${MONERO_SRC}/crypto/slow-hash.c
+    ${MONERO_SRC}/crypto/slow-hash-dummied.cpp
     ${MONERO_SRC}/crypto/oaes_lib.c
     ${MONERO_SRC}/crypto/crypto-ops.c
     ${MONERO_SRC}/crypto/crypto-ops-data.c
@@ -161,7 +161,6 @@ set(
 -Os \
 --separate-asm \
 -s AGGRESSIVE_VARIABLE_ELIMINATION=1 \
--s \"BINARYEN_METHOD='asmjs'\" \
 -s ALLOW_MEMORY_GROWTH=0 \
 --memory-init-file 0 \
 "
@@ -175,7 +174,6 @@ set(
     "${EMCC_LINKER_FLAGS___BASE} \
 -s WASM=1 \
 -Oz \
--s \"BINARYEN_METHOD='native-wasm'\" \
 -s ALLOW_MEMORY_GROWTH=1 \
 --post-js ${CMAKE_CURRENT_LIST_DIR}/src/module-post.js \
 "
