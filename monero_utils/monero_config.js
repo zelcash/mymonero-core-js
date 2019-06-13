@@ -32,26 +32,26 @@ const JSBigInt = require("../cryptonote_utils/biginteger").BigInteger;
 //
 module.exports = {
 	// Number of atomic units in one unit of currency. e.g. 12 => 10^12 = 1000000000000
-	coinUnitPlaces: 6,
+	coinUnitPlaces: 12,
 
 	// Minimum number of confirmations for a transaction to show as confirmed
 	txMinConfirms: 10,
 
 	// Currency symbol
-	coinSymbol: "XCASH",
+	coinSymbol: "XMR",
 
 	// OpenAlias prefix
-	openAliasPrefix: "xca",
+	openAliasPrefix: "xmr",
 
 	// Currency name
-	coinName: "X-CASH",
+	coinName: "Monero",
 
 	// Payment URI Prefix
-	coinUriPrefix: "xcash:",
+	coinUriPrefix: "monero:",
 
 	// Dust threshold in atomic units
 	// 2*10^9 used for choosing outputs/change - we decompose all the way down if the receiver wants now regardless of threshold
-	dustThreshold: new JSBigInt("2000"),
+	dustThreshold: new JSBigInt("2000000000"),
 
 	// Maximum block number, used for tx unlock time
 	maxBlockNumber: 500000000,
