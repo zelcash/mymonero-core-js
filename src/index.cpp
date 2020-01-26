@@ -75,6 +75,14 @@ string send_cb_III__submitted_tx(const string &args_string)
         return serial_bridge_utils::error_ret_json_from_message(e.what());
     }
 }
+string send_step2__try_create_transaction(const string &args_string)
+{
+    try {
+        return serial_bridge::send_step2__try_create_transaction(args_string);
+    } catch (std::exception &e) {
+        return serial_bridge_utils::error_ret_json_from_message(e.what());
+    }
+}
 //
 string decode_address(const string &args_string)
 {
@@ -175,6 +183,25 @@ string estimated_tx_network_fee(const string &args_string)
         return serial_bridge_utils::error_ret_json_from_message(e.what());
     }
 }
+//
+string estimate_fee(const string &args_string)
+{
+    try {
+        return serial_bridge::estimate_fee(args_string);
+    } catch (std::exception &e) {
+        return serial_bridge_utils::error_ret_json_from_message(e.what());
+    }
+}
+//
+string estimate_tx_weight(const string &args_string)
+{
+    try {
+        return serial_bridge::estimate_tx_weight(args_string);
+    } catch (std::exception &e) {
+        return serial_bridge_utils::error_ret_json_from_message(e.what());
+    }
+}
+//
 string estimate_rct_tx_size(const string &args_string)
 {
     try {
@@ -256,6 +283,7 @@ EMSCRIPTEN_BINDINGS(my_module)
     emscripten::function("send_cb_I__got_unspent_outs", &send_cb_I__got_unspent_outs);
     emscripten::function("send_cb_II__got_random_outs", &send_cb_II__got_random_outs);
     emscripten::function("send_cb_III__submitted_tx", &send_cb_III__submitted_tx);
+    emscripten::function("send_step2__try_create_transaction", &send_step2__try_create_transaction);
     //
     emscripten::function("decode_address", &decode_address);
     emscripten::function("is_subaddress", &is_subaddress);
@@ -272,6 +300,8 @@ EMSCRIPTEN_BINDINGS(my_module)
     emscripten::function("address_and_keys_from_seed", &address_and_keys_from_seed);
     //
     emscripten::function("estimated_tx_network_fee", &estimated_tx_network_fee);
+    emscripten::function("estimate_fee", &estimate_fee);
+    emscripten::function("estimate_tx_weight", &estimate_tx_weight);
     emscripten::function("estimate_rct_tx_size", &estimate_rct_tx_size);
     //
     emscripten::function("generate_key_image", &generate_key_image);
@@ -282,7 +312,6 @@ EMSCRIPTEN_BINDINGS(my_module)
     emscripten::function("decodeRctSimple", &decodeRctSimple);
     emscripten::function("derivation_to_scalar", &derivation_to_scalar);
     emscripten::function("encrypt_payment_id", &encrypt_payment_id);
-    //
 }
 extern "C"
 { // C -> JS
