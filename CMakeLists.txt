@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 project(MyMoneroCoreCpp)
 #
@@ -66,7 +66,7 @@ set(
     ${MONERO_SRC}/cryptonote_basic/cryptonote_format_utils.cpp
     ${MONERO_SRC}/crypto/crypto.cpp
     ${MONERO_SRC}/crypto/hash.c
-    ${MONERO_SRC}/crypto/slow-hash-dummied.cpp
+    #${MONERO_SRC}/crypto/slow-hash.c
     ${MONERO_SRC}/crypto/oaes_lib.c
     ${MONERO_SRC}/crypto/crypto-ops.c
     ${MONERO_SRC}/crypto/crypto-ops-data.c
@@ -131,7 +131,7 @@ set (
     #unsure if the -I...boost..include is necessary here due to include above
     #
     # TODO? does EXPORT_NAME need to be the same for both targets? (or should it be set per-target with …_WASM, …_ASMJS?)
-    "-Wall -std=c++11 \
+    "-Wall -std=c++14 \
 --bind -s MODULARIZE=1 \
 -s 'EXPORT_NAME=\"MyMoneroCoreCpp\"' \
 --llvm-lto 1 \
@@ -144,7 +144,6 @@ set (
 -s EXCEPTION_DEBUG=1 \
 -s DEMANGLE_SUPPORT=1 \
 -s NO_DYNAMIC_EXECUTION=1 \
--s NODEJS_CATCH_EXIT=0 \
 -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"UTF8ToString\"]' \
 "
     # • Disabling exception catching does not introduce silent failures 
@@ -163,6 +162,7 @@ set(
 -s AGGRESSIVE_VARIABLE_ELIMINATION=1 \
 -s ALLOW_MEMORY_GROWTH=0 \
 --memory-init-file 0 \
+-s SEPARATE_ASM_MODULE_NAME=asmjs \
 "
     # --memory-init-file is explicitly set to 0 because optimization level is Oz, and some clients like React Native have trouble loading .mem files
     # .... it also didn't seem to have a giant impact on perf. but this should be tested again

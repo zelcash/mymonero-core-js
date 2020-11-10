@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2019, MyMonero.com
+// Copyright (c) 2014-2018, MyMonero.com
 //
 // All rights reserved.
 //
@@ -138,9 +138,7 @@ class Fetch
 							]
 						} // NOTE: we'd have more in the real reply - and even the api response parser doesn't care about those values right now
 					],
-					per_byte_fee: "24658",
-					fee_mask: "10000",
-					fork_version: 10
+					per_byte_fee: "24658"
 					/*deprecated*/// per_kb_fee: parseInt("24658"/*for str search*/) * 1024 // scale the per b we know up to per kib (so it can be scaled back down - interrim until all clients are ready for per b fee)
 				})
 			} else if (url.indexOf("get_random_outs") !== -1) {
@@ -245,7 +243,7 @@ describe("sendingFunds tests", function()
 			},
 			error_fn: function(params)
 			{
-				console.error("Error occurred.... ", params.err_msg)
+				console.log("Error occurred.... ", params.err_msg)
 				throw new Error("SendFunds err:" + params.err_msg) 
 				// TODO: how to assert err msg not nil? didn't work
 				assert.equal(true, false)
@@ -253,7 +251,7 @@ describe("sendingFunds tests", function()
 			success_fn: function(params)
 			{
 				assert.equal(params.mixin, 10);
-				assert.equal(params.total_sent, "266010000")
+				assert.equal(params.total_sent, "266009466")
 				assert.equal(params.final_payment_id, "d2f602b240fbe624")
 				console.log("Sendfunds success")
 				console.log("sentAmount", params.total_sent)

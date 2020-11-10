@@ -14,12 +14,14 @@ if [ ! -d "$SRC_PATH" ]; then
   exit 1
 fi
 
-if [ -z "$EMSCRIPTEN" ]; then
-  echo "EMSCRIPTEN MUST BE DEFINED!"
-  exit -1  
-fi
+# if [ -z "$EMSCRIPTEN" ]; then
+#   echo "EMSCRIPTEN MUST BE DEFINED!"
+#   exit -1  
+# fi
 
-cd $EMSCRIPTEN; ./embuilder.py build zlib
+# cd $EMSCRIPTEN; ./embuilder.py build zlib
+
+cd /root/Documents/Project/BeldexCoin/emsdk/fastcomp/emscripten ./embuilder.py build zlib
 
 # ---
 
