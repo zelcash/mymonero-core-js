@@ -35,6 +35,7 @@ var network_type = {
 	FAKECHAIN: 3,
 	UNDEFINED: 4,
 	XCASH_MAINNET: 10,
+	BELDEX_MAINNET: 20,
 };
 exports.network_type = network_type;
 exports.nettype_to_API_string = function(nettype)
@@ -72,6 +73,10 @@ var __XCASH_MAINNET_CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 0x5c134;
 var __XCASH_MAINNET_CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = 19;
 var __XCASH_MAINNET_CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX = 42;
 //
+var __BELDEX_MAINNET_CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 0xd1;
+var __BELDEX_MAINNET_CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = 19;
+var __BELDEX_MAINNET_CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX = 42;
+//
 function cryptonoteBase58PrefixForStandardAddressOn(nettype) {
 	if (nettype == null || typeof nettype === "undefined") {
 		console.warn("Unexpected nil nettype");
@@ -84,6 +89,8 @@ function cryptonoteBase58PrefixForStandardAddressOn(nettype) {
 		return __STAGENET_CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX;
 	} else if (nettype == network_type.XCASH_MAINNET) {
 		return __XCASH_MAINNET_CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX;
+	} else if (nettype == network_type.BELDEX_MAINNET) {
+		return __BELDEX_MAINNET_CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX;
 	}
 	throw "Illegal nettype";
 }
@@ -99,6 +106,8 @@ function cryptonoteBase58PrefixForIntegratedAddressOn(nettype) {
 		return __STAGENET_CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX;
 	} else if (nettype == network_type.XCASH_MAINNET) {
 		return __XCASH_MAINNET_CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX;
+	} else if (nettype == network_type.BELDEX_MAINNET) {
+		return __BELDEX_MAINNET_CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX;
 	}
 	throw "Illegal nettype";
 }
@@ -114,6 +123,8 @@ function cryptonoteBase58PrefixForSubAddressOn(nettype) {
 		return __STAGENET_CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX;
 	} else if (nettype == network_type.XCASH_MAINNET) {
 		return __XCASH_MAINNET_CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX;
+	} else if (nettype == network_type.BELDEX_MAINNET) {
+		return __BELDEX_MAINNET_CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX;
 	}
 	throw "Illegal nettype";
 }
