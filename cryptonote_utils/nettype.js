@@ -52,7 +52,9 @@ exports.nettype_to_API_string = function(nettype)
 		case network_type.UNDEFINED:
 			return "UNDEFINED"
 		case network_type.XCASH_MAINNET:
-		  return "XCASH_MAINNET"
+			return "XCASH_MAINNET"
+		case network_type.BELDEX_MAINNET:
+			return "BELDEX_MAINNET"
 	}
 	throw "Unrecognized nettype"
 }
